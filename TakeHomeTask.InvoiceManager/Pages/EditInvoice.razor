@@ -1,0 +1,141 @@
+﻿@page "/editinvoice/{id}"
+@page "/editinvoice"
+
+@inherits EditInvoiceBase
+
+
+<EditForm Model="@InvoiceViewModel" OnValidSubmit="HandleValidSubmit">
+  <ObjectGraphDataAnnotationsValidator />
+   
+    <div class="form-row"> 
+     <div class="col-md-4 mb-3">
+       
+    </div>
+    <div class="col-md-4 mb-3">
+       <h4><u>@ViewTitle</u></h4> 
+    </div>
+    <div class="col-md-4 mb-3">
+       
+    </div>
+</div> 
+    <hr />
+    <ValidationSummary />
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="description"> Description</label>
+    <InputText id="description" class="form-control" placeholder="Description"
+                       @bind-Value="InvoiceViewModel.Description" autocomplete="off" />
+            <ValidationMessage For="@(() => InvoiceViewModel.Description)" />
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="amount">Amount</label>
+     <InputNumber id="amount" class="form-control" placeholder="Amount"
+                       @bind-Value="InvoiceViewModel.Amount" />
+            <ValidationMessage For="@(() => InvoiceViewModel.Amount)" />
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="InvoiceDate">Invoice Date</label>
+      <div class="input-group">
+        <InputDate @bind-Value="InvoiceViewModel.InvoiceDate" class="form-control" />
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="deliveryDate"> Delivery Date</label>
+    <InputDate @bind-Value="InvoiceViewModel.DeliveryDate" class="form-control" />
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="settleDate">Settle Date</label>
+   <InputDate @bind-Value="InvoiceViewModel.SettleDate" class="form-control" />
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="invoiceDate">Invoice Vat</label>
+      <div class="input-group">
+         
+       <InputSelect @bind-Value="InvoiceViewModel.InvoiceVat"
+                               class="form-control">
+                               <option selected="selected" value="">Select vat...</option>
+                @foreach (var vat in Vats)
+                {
+                    <option value="@vat.Percentage">
+                        @vat.Percentage
+                    </option>
+                }
+            </InputSelect>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="currency">Currency</label>
+      <InputSelect @bind-Value="InvoiceViewModel.Currency"
+                               class="form-control">
+                               <option selected="selected" value="">Select symbol...</option>
+                @foreach (var c in Currencies)
+                {
+                    <option value="@c.Symbol">
+                        @c.Symbol
+                    </option>
+                }
+            </InputSelect>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationCustom02">Exchange Rate</label>
+      <InputSelect @bind-Value="InvoiceViewModel.ExchangeRate"
+                               class="form-control">
+                               <option selected="selected" value="">Select rate...</option>
+                @foreach (var rate in ExchangeRates)
+                {
+                    <option value="@rate.Rate">
+                        @rate.Rate
+                    </option>
+                }
+            </InputSelect>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="client">Client</label>
+      <div class="input-group">
+         
+         <InputSelect @bind-Value="InvoiceViewModel.Client"
+                               class="form-control">
+                               <option selected="selected" value="">Select client...</option>
+                @foreach (var client in Clients)
+                {
+                    <option value="@client.ClientName">
+                        @client.ClientName
+                    </option>
+                }
+            </InputSelect>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="orderNumber">Order Number</label>
+       <InputText id="orderNumber" class="form-control" placeholder="Order number"
+                       @bind-Value="InvoiceViewModel.OrderNumber" autocomplete="off"/>
+            <ValidationMessage For="@(() => InvoiceViewModel.OrderNumber)" />
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="salesAgent">Sales</label>
+       <InputText id="salesAgent" class="form-control" placeholder="Sales"
+                       @bind-Value="InvoiceViewModel.SalesAgent" autocomplete="off" />
+            <ValidationMessage For="@(() => InvoiceViewModel.SalesAgent)" />
+    </div>
+   <div class="col-md-4 mb-3">
+         
+    </div>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    @if (InvoiceViewModel.InvoiceNumber !=null)
+    {
+        <text>|</text> <button class="btn btn-danger" type="button" @onclick="Delete_Click">Delete</button>
+    }
+    <text>|</text> <button class="btn btn-warning" type="button" @onclick="Cancel_Click">Cancel</button>
+  </div>
+  
+</EditForm>
+
+ <Confirm @ref="DeleteConfirmation" ConfirmationChanged="ConfirmDelete_Click"
+         ConfirmationMessage=@($"Are you sure you want to delete \"{InvoiceViewModel.Description}\"")>
+</Confirm>

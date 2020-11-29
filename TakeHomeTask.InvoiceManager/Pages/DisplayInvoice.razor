@@ -1,0 +1,23 @@
+﻿ 
+@inherits DisplayInvoiceBase
+
+<div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
+    <div class="card-header">
+        <h3>
+            @Invoice.Description
+        </h3>
+          @Invoice.InvoiceDate
+    </div>
+    <div class="card-footer text-center">
+
+            <a href="@($"editinvoice/{Invoice.InvoiceNumber}")"
+               class="btn btn-primary m-1">Edit</a>
+
+            <button type="button" class="btn btn-danger m-1"
+                    @onclick="Delete_Click">
+                Delete
+            </button>
+        </div>
+</div>
+<Confirm ConfirmationChanged="ConfirmDelete_Click" @ref="DeleteConfirmation"
+         ConfirmationMessage=@($"Are you sure you want to delete \"{Invoice.Description}\"")></Confirm>

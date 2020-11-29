@@ -1,0 +1,20 @@
+﻿@page "/InvoiceList"
+@inherits InvoiceListBase
+
+ 
+ 
+@if (Invoices == null)
+{
+    <div class="spinner"></div>
+}
+else
+{
+    <div class="card-deck">
+        @foreach (var invoice in Invoices)
+        {
+            <DisplayInvoice Invoice="invoice"  
+                             OnInvoiceDeleted="InvoiceDeleted"></DisplayInvoice>
+        }
+    </div>
+}
+

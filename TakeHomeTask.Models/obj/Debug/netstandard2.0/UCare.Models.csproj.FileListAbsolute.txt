@@ -1,0 +1,8 @@
+C:\Users\Nedu\Projects\UCare\UCare.Models\bin\Debug\netstandard2.0\UCare.Models.deps.json
+C:\Users\Nedu\Projects\UCare\UCare.Models\bin\Debug\netstandard2.0\UCare.Models.dll
+C:\Users\Nedu\Projects\UCare\UCare.Models\obj\Debug\netstandard2.0\UCare.Models.AssemblyInfoInputs.cache
+C:\Users\Nedu\Projects\UCare\UCare.Models\obj\Debug\netstandard2.0\UCare.Models.AssemblyInfo.cs
+C:\Users\Nedu\Projects\UCare\UCare.Models\bin\Debug\netstandard2.0\UCare.Models.pdb
+C:\Users\Nedu\Projects\UCare\UCare.Models\obj\Debug\netstandard2.0\UCare.Models.dll
+C:\Users\Nedu\Projects\UCare\UCare.Models\obj\Debug\netstandard2.0\UCare.Models.pdb
+C:\Users\Nedu\Projects\UCare\UCare.Models\obj\Debug\netstandard2.0\UCare.Models.csprojAssemblyReference.cache
